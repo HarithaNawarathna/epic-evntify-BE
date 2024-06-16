@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const connection = require('../services/connection')
 
 
 const createPayment = require('../components/createPayment/createPayment');
@@ -13,6 +12,8 @@ const userSignup = require('../components/userSignup/userSignup');
 const userSignin = require('../components/userSignin/userSignin');
 const { authenticateToken } = require('../utils/authUtils');
 const mailTest = require('../components/test/mailTest');
+const verifyOtp = require('../components/verifyOtp/verifyOtp');
+const ResetPasswordVerification = require('../components/ResetPasswordVerification/ResetPasswordVerification');
 
 
 //create payment intent
@@ -58,6 +59,15 @@ router.get('/protected', authenticateToken,  (req, res) => {
 router.get('/test/email', (req, res) => {   
     mailTest(req, res);
 });
+
+router.post('/verify-otp', (req, res)=>{
+    verifyOtp(req, res);
+})
+
+router.post('/reset-password-verification', (req, res)=>{
+    ResetPasswordVerification(req, res);
+})
+
     
 
 
