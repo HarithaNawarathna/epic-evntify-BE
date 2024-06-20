@@ -24,6 +24,7 @@ module.exports = async function ResetPasswordVerification(req, res) {
                 const subject = "Reset Password Verification";
                 const htmlTemplatePath = path.resolve(__dirname, '../../templates/forgotpasswordotp.html');
                 const replacements = {
+                    name: result[0].name,
                     otp: otp
                 };
 

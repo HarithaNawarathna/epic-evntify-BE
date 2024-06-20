@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 
-
 const createPayment = require('../components/createPayment/createPayment');
 const savePaymentData = require('../components/savePaymentData/savePaymentData');
 const getEventData = require('../components/getEventData/getEventData');
@@ -14,12 +13,14 @@ const { authenticateToken } = require('../utils/authUtils');
 const mailTest = require('../components/test/mailTest');
 const verifyOtp = require('../components/verifyOtp/verifyOtp');
 const ResetPasswordVerification = require('../components/ResetPasswordVerification/ResetPasswordVerification');
-
+const resetPassword = require('../components/resetPassword/resetPassword');
+const getTicketsDataByUser = require('../components/getTicketsDataByUser/getTicketsDataByUser');
+const uploadImage = require('../components/uploadImage/uploadImage');
 
 //create payment intent
 router.post('/create-payment-intent', (req, res) => {
     createPayment(req, res);
-});
+})
 
 //save payment data
 router.post('/savepayment', async(req, res)=>{
@@ -68,7 +69,16 @@ router.post('/reset-password-verification', (req, res)=>{
     ResetPasswordVerification(req, res);
 })
 
-    
+router.post('/reset-password', (req, res)=>{
+    resetPassword(req, res)
+})
 
+router.get('/get-tickets-data-by-user/:user_id/:event_id', (req, res) => {
+    getTicketsDataByUser(req, res);
+});
+
+router.put('/upload-image', (req, res) => {
+    uploadImage(req, res);
+});
 
 module.exports = router
