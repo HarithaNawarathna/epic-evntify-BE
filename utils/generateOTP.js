@@ -11,7 +11,6 @@ const generateOTP = (email) => {
 
     const otpExpiry = new Date(Date.now() + 10 * 60000); // OTP valid for 10 minutes
 
-    // Start a transaction to ensure atomic operations
     connection.beginTransaction(err => {
         if (err) {
             console.log('Error starting transaction:', err);
@@ -38,7 +37,6 @@ const generateOTP = (email) => {
                     });
                 }
 
-                // Commit the transaction
                 connection.commit(err => {
                     if (err) {
                         console.log('Error committing transaction:', err);

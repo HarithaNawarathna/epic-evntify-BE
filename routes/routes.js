@@ -16,6 +16,7 @@ const ResetPasswordVerification = require('../components/ResetPasswordVerificati
 const resetPassword = require('../components/resetPassword/resetPassword');
 const getTicketsDataByUser = require('../components/getTicketsDataByUser/getTicketsDataByUser');
 const uploadImage = require('../components/uploadImage/uploadImage');
+const getUserById = require('../components/getUserById/getUserById');
 
 //create payment intent
 router.post('/create-payment-intent', (req, res) => {
@@ -81,4 +82,7 @@ router.put('/upload-image', (req, res) => {
     uploadImage(req, res);
 });
 
+router.get('/get-user/:id', (req, res)=>{
+    getUserById(req, res)
+})
 module.exports = router

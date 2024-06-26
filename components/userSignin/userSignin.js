@@ -24,10 +24,12 @@ module.exports = async function userSignin(req, res) {
             const accessToken = generateAccessToken(user.email);
             const refreshToken = generateRefreshToken(user.email);
             const username = user.name;
+            const user_id = user.id
             return res.status(200).json({
                 accessToken,
                 refreshToken,
-                username
+                username,
+                user_id
             });
 
             
