@@ -9,7 +9,6 @@ module.exports = async function userSignup(req, res) {
     const selectsql = 'SELECT * FROM users WHERE email = ? || nic = ?;';
 
     try {
-        // Check if user already exists
         connection.query(selectsql, [req.body.email, req.body.nic], async (err, result) => {
             if (err) {
                 console.log(err);
@@ -20,7 +19,6 @@ module.exports = async function userSignup(req, res) {
                 return res.status(409).json("User already exists");
             }
 
-            // If user does not exist, proceed to insert new user
             const password = await hashPassword(req.body.password);
             const values = [req.body.name, req.body.email, req.body.nic, req.body.contact_number, password];
 

@@ -17,18 +17,18 @@ const resetPassword = require('../components/resetPassword/resetPassword');
 const getTicketsDataByUser = require('../components/getTicketsDataByUser/getTicketsDataByUser');
 const uploadImage = require('../components/uploadImage/uploadImage');
 const getUserById = require('../components/getUserById/getUserById');
+const editProfile = require('../components/editProfile/editProfile');
+const getTicketDataByEvent = require('../components/getTicketDataByEvent/getTicketDataByEvent');
+const changePassword = require('../components/changePassword/changePassword');
 
-//create payment intent
 router.post('/create-payment-intent', (req, res) => {
     createPayment(req, res);
 })
 
-//save payment data
 router.post('/savepayment', async(req, res)=>{
     savePaymentData(req, res);
 })
 
-//get all events
 router.get('/getallevents', async(req, res)=>{
     getEventData(req, res);
 })
@@ -85,4 +85,16 @@ router.put('/upload-image', (req, res) => {
 router.get('/get-user/:id', (req, res)=>{
     getUserById(req, res)
 })
+
+router.put('/edit-user', (req, res)=>{
+    editProfile(req, res)
+});
+
+router.get('/get-ticket-data-by-event/:event_id', (req, res)=>{
+    getTicketDataByEvent(req, res)
+});
+
+router.put('/change-password', (req, res)=>{
+    changePassword(req, res)
+});
 module.exports = router

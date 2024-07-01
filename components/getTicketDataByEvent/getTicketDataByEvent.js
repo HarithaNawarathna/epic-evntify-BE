@@ -1,7 +1,7 @@
 const connection = require('./../../services/connection');
 
-module.exports = async function getEventData(req, res) {
-    const sql = `SELECT id,event_name, DATE_FORMAT(date, '%Y %b %d') AS date, TIME_FORMAT(time, '%h:%i %p') AS time, image_url FROM events;`;
+module.exports = async function getTicketDataByEvent(req, res) {
+    const sql = `select * from ticket_types where event_id = ${req.params.event_id}`;
 
     connection.query(sql, (err, result) => {
         if (err) {
@@ -11,6 +11,4 @@ module.exports = async function getEventData(req, res) {
             return res.status(200).json(result)
         }
     })
-
-
 }
