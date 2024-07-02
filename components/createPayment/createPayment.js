@@ -3,12 +3,14 @@ const stripe = require('stripe')('sk_test_51ObQ74EVdCsIjFayT4UseE6U5twkNEezJNdyH
 
 
 module.exports = async function createPayment(req, res) {
+    console.log(req.body)
     try {
         const paymentIntent = await stripe.paymentIntents.create({
             amount: req.body.amount ,
             currency: 'usd',
             payment_method_types: ['card'],
         });
+        
         res.json({ clientSecret: paymentIntent.client_secret });
     } catch (error) {
         console.error('Error creating payment intent:', error);
