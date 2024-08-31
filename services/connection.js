@@ -4,10 +4,10 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'root',
-    database: 'haritha',
+    host: 'localhost', //epiceventify.mysql.database.azure.com
+    user: 'root', //epiceventify
+    password: 'root', //MAHhrn211@
+    database: 'haritha', //epiceventifydb
 });
 
 connection.connect((err) => {
